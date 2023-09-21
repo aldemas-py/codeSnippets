@@ -4,13 +4,13 @@
     padding: 10px;
     position: relative;
     margin: 0 auto;
-    
+
     user-select: none;
 }
 
 /* Display CSS arrow to the right of the dropdown text */
 .checkbox-dropdown:after {
-    content:'';
+    content: '';
     height: 0;
     position: absolute;
     width: 0;
@@ -33,29 +33,37 @@
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 100%; /* align the dropdown right below the dropdown text */
+    top: 100%;
+    /* align the dropdown right below the dropdown text */
     border: inherit;
     border-top: none;
-    left: -1px; /* align the dropdown to the left */
-    right: -1px; /* align the dropdown to the right */
-    opacity: 0; /* hide the dropdown */
-   
+    left: -1px;
+    /* align the dropdown to the left */
+    right: -1px;
+    /* align the dropdown to the right */
+    opacity: 0;
+    /* hide the dropdown */
+
     transition: opacity 0.4s ease-in-out;
     height: 100px;
     overflow: scroll;
     overflow-x: hidden;
-    pointer-events: none; /* avoid mouse click events inside the dropdown */
+    pointer-events: none;
+    /* avoid mouse click events inside the dropdown */
 }
+
 .is-active .checkbox-dropdown-list {
-    opacity: 1; /* display the dropdown */
-    pointer-events: auto; /* make sure that the user still can select checkboxes */
+    opacity: 1;
+    /* display the dropdown */
+    pointer-events: auto;
+    /* make sure that the user still can select checkboxes */
 }
 
 .checkbox-dropdown-list li label {
     display: block;
     border-bottom: 1px solid silver;
     padding: 10px;
-   
+
     transition: all 0.2s ease-out;
 }
 
