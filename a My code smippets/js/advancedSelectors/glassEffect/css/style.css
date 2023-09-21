@@ -1,0 +1,8 @@
+.diiv{
+    background: #ffffff10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    width: 300px;
+    height: 400px;
+    margin: 100px auto;
+}
