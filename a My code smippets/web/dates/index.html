@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Web Date</title>
+  </head>
+  <body>
+    <div id="webDate"></div>
+
+    <script>
+      // Set the start date
+      const startDate = new Date("January 1, 2023");
+
+      // Function to update the web date
+      function updateWebDate() {
+        const currentDate = new Date();
+        const timeDifference = currentDate - startDate;
+
+        // Calculate the number of years
+        const years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+
+        // Display the result
+        document.getElementById("webDate").innerHTML = `${years} ${
+          years === 1 ? "year" : "years"
+        }`;
+      }
+
+      // Initial call to set the web date
+      updateWebDate();
+
+      // Set up an interval to update the web date every day
+      setInterval(updateWebDate, 24 * 60 * 60 * 1000); // Update every 24 hours
+    </script>
+  </body>
+</html>
