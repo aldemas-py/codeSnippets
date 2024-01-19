@@ -22,4 +22,10 @@ body {
     background-color: #e0e0e0;
     /* Light grey background color */
     color: #000;
+
+
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    /* Light background color */
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    /* background-color: #f9f9f9; */
 }
