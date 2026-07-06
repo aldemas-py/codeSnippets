@@ -200,8 +200,6 @@ const processImage = async (item, button = null, downloadAfterOptimize = false) 
         button.disabled = false;
         button.textContent = 'Download';
     }
-
-    return blob;
 };
 
 const handleFiles = async (files) => {
