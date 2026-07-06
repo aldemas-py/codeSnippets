@@ -203,6 +203,12 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
             background: #f0f7ff;
         }
 
+        .upload-box.drag-over {
+            border-color: var(--primary);
+            background: #eaf4ff;
+            transform: scale(1.01);
+        }
+
         .file-input {
             display: block;
             margin: 8px auto 0;
@@ -409,8 +415,8 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
             <div class="chip">Deployment-ready</div>
         </div>
 
-        <label class="upload-box" for="imageUpload">
-            <strong>Select images to optimize</strong>
+        <label class="upload-box" id="dropZone" for="imageUpload">
+            <strong>Drag and drop images here or click to browse</strong>
             <input class="file-input" type="file" id="imageUpload" accept="image/*" multiple>
         </label>
 
@@ -451,6 +457,7 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
 
     <script>
         const uploadInput = document.getElementById('imageUpload');
+        const uploadBox = document.getElementById('dropZone');
         const qualityInput = document.getElementById('quality');
         const maxWidthInput = document.getElementById('maxWidth');
         const resultText = document.getElementById('result');
@@ -629,13 +636,16 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
             resultText.textContent = `Optimized ${item.fileName}.`;
         };
 
-        uploadInput.addEventListener('change', async (event) => {
-            const files = Array.from(event.target.files || []);
-            if (!files.length) return;
+        const handleFiles = async (files) => {
+            const imageFiles = Array.from(files || []).filter((file) => file && file.type.startsWith('image/'));
+            if (!imageFiles.length) {
+                resultText.textContent = 'Please choose image files.';
+                return;
+            }
 
             selectedImages = [];
 
-            for (const file of files) {
+            for (const file of imageFiles) {
                 const dataUrl = await readFileAsDataURL(file);
                 const img = await loadImage(dataUrl);
                 selectedImages.push({
@@ -649,6 +659,33 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
             renderCards();
             resultText.textContent =
                 `${selectedImages.length} image(s) loaded. Click compress to generate lighter versions.`;
+        };
+
+        uploadInput.addEventListener('change', async (event) => {
+            await handleFiles(event.target.files);
+        });
+
+        ['dragenter', 'dragover'].forEach((eventName) => {
+            uploadBox.addEventListener(eventName, (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                uploadBox.classList.add('drag-over');
+            });
+        });
+
+        ['dragleave', 'dragend'].forEach((eventName) => {
+            uploadBox.addEventListener(eventName, (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                uploadBox.classList.remove('drag-over');
+            });
+        });
+
+        uploadBox.addEventListener('drop', async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadBox.classList.remove('drag-over');
+            await handleFiles(event.dataTransfer?.files || []);
         });
 
         document.getElementById('compressBtn').addEventListener('click', async () => {
