@@ -301,6 +301,55 @@ button:hover {
     place-items: center;
 }
 
+.tutorial-card {
+    margin-top: 24px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.tutorial-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    color: var(--text);
+}
+
+.tutorial-card p {
+    margin: 0 0 12px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.tutorial-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.tutorial-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.tutorial-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #dbeafe;
+}
+
+.tutorial-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
 @media (max-width: 700px) {
     .card {
         padding: 18px;

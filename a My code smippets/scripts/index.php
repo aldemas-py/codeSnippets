@@ -164,7 +164,7 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
             </div>
         </div>
 
-        <div class="progress-wrap" id="progressWrap" style="display:none;">
+        <div class="progress-wrap" id="progressWrap">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
@@ -181,15 +181,32 @@ if ($requestMethod === 'POST' && isset($_FILES['image']) && isset($_POST['fileNa
         <p id="result" class="result-text"></p>
     </div>
 
-    <div id="previewModal" class="modal">
+    <div id="previewModal" class="modal" aria-hidden="true">
         <div class="modal-content">
-            <span id="closeModal" class="close-btn">&times;</span>
+            <span id="closeModal" class="close-btn" role="button" tabindex="0" aria-label="Close preview">&times;</span>
             <img id="modalImage" alt="Zoomed preview">
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <div class="tutorial-card">
+        <h3>Here is a tutorial on how you can create your own.</h3>
+        <p>Download the guide below to see the steps for building this image optimizer webpage.</p>
+        <a class="tutorial-link" href="image_optimizer_webpage_tutorial.pdf" download>
+            <span class="tutorial-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <path d="M9 15h6"></path>
+                    <path d="M9 11h6"></path>
+                    <path d="M9 19h4"></path>
+                </svg>
+            </span>
+            <span>Download tutorial PDF</span>
+        </a>
+    </div>
 
+    <script src="app.js"></script>
 </body>
 
 </html>
